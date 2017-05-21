@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-u'''\
+'''\
 
 :mod:`ecoxipy.etree_output` - Building ElementTree Data
 =======================================================
@@ -89,7 +89,7 @@ class ETreeOutput(Output):
         def handle_texts():
             if texts is None or len(texts) == 0:
                 return
-            joined_texts = u''.join(texts)
+            joined_texts = ''.join(texts)
             texts.clear()
             if previous is None:
                 element.text = joined_texts

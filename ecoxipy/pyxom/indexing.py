@@ -248,7 +248,7 @@ class UniqueValueIndex(collections.Mapping):
         '''
         if key in self._index:
             raise ValueError(
-                u'A value for key "{}" is already registered'.format(key))
+                'A value for key "{}" is already registered'.format(key))
         self._index[key] = value
 
     def __getitem__(self, key):
@@ -266,7 +266,7 @@ class UniqueValueIndex(collections.Mapping):
         return iter(self._index)
 
     def __repr__(self):
-        return u'{}.{}{}'.format(self.__class__.__module__,
+        return '{}.{}{}'.format(self.__class__.__module__,
             self.__class__.__name__, repr(self._index))
 
 
@@ -390,7 +390,7 @@ class ElementByUniqueAttributeValueIndexer(UniqueValueIndexer,
     :param attribute_name: defines
         :attr:`AttributeValueIndexer.attribute_name`
     '''
-    def __init__(self, attribute_name=u'id'):
+    def __init__(self, attribute_name='id'):
         AttributeValueIndexer.__init__(self, attribute_name)
 
     def extract_items(self, node):
@@ -501,7 +501,7 @@ class NamespaceIndexer(Indexer):
             node)
         def iterator():
             yield create_item(node)
-            for attribute in node.attributes.values():
+            for attribute in list(node.attributes.values()):
                 yield create_item(attribute)
         return iterator()
 

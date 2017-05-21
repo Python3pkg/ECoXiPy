@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-u'''\
+'''\
 :mod:`ecoxipy.pyxom.output` - Building PyXOM Structures
 =======================================================
 

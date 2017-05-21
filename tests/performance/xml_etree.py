@@ -3,7 +3,7 @@ from xml.dom import XHTML_NAMESPACE
 
 import sys
 if sys.version_info[0] > 2:
-    unicode = str
+    str = str
 
 def create_testdoc(_title, _content, _data_count, _data_text):
     html_element = ET.Element('html', xmlns=XHTML_NAMESPACE)
@@ -21,10 +21,10 @@ def create_testdoc(_title, _content, _data_count, _data_text):
     p_element.text = _content
     body_element.append(p_element)
     for i in range(_data_count):
-        div_element = ET.Element('div', {'data-i': unicode(i)})
+        div_element = ET.Element('div', {'data-i': str(i)})
         body_element.append(div_element)
         for j in range(_data_count):
-            p_element = ET.Element('p', {'data-j': unicode(j)})
+            p_element = ET.Element('p', {'data-j': str(j)})
             p_element.text = _data_text
             div_element.append(p_element)
     html_doc = ET.ElementTree(html_element)

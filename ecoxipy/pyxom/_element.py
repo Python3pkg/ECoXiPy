@@ -72,7 +72,7 @@ class Element(ContainerNode, NamespaceNameMixin):
             ],
             {} if attributes is None else {
                 _unicode(attr_name): _unicode(attr_value)
-                for attr_name, attr_value in attributes.items()
+                for attr_name, attr_value in list(attributes.items())
             }, True)
 
     def _set_namespace(self, prefix, value):
@@ -182,7 +182,7 @@ class Element(ContainerNode, NamespaceNameMixin):
         def do_indent(at_start=False):
             if indent:
                 if indent_count > 0 or not at_start:
-                    content_handler.characters(u'\n')
+                    content_handler.characters('\n')
                 for i in range(indent_count):
                     content_handler.characters(indent_incr)
         do_indent(True)
@@ -204,7 +204,7 @@ class Element(ContainerNode, NamespaceNameMixin):
             do_indent()
         content_handler.endElement(self.name)
         if indent and indent_count == 0:
-            content_handler.characters(u'\n')
+            content_handler.characters('\n')
 
     def __repr__(self):
         return 'ecoxipy.pyxom.Element[{}, {{...}}]'.format(

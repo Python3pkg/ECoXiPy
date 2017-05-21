@@ -269,7 +269,7 @@ class ContainerNode(XMLNode, collections.MutableSequence):
             del child._parent
         except AttributeError:
             pass
-        self._wire_neighbors(child.previous, child.next)
+        self._wire_neighbors(child.previous, child.__next__)
         try:
             del child._next
         except AttributeError:

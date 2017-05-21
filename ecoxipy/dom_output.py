@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-u'''\
+'''\
 
 :mod:`ecoxipy.dom_output` - Building DOM Data
 =============================================
@@ -106,7 +106,7 @@ class DOMOutput(Output):
         :rtype: :class:`xml.dom.ProcessingInstruction`
         '''
         if content is None:
-            content = u''
+            content = ''
         else:
             content = content
         return self._document.createProcessingInstruction(target, content)

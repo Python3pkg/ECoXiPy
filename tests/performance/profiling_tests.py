@@ -17,23 +17,23 @@ for i in xrange({1}):
     return format_str.format(module.__name__, TIMEIT_NUMBER, TIMEIT_DATA_COUNT, LOREM_IPSUM)
 
 if __name__ == '__main__':
-    print '''
+    print('''
     ECoXiPy Profiling
     =================
 
     ecoxipy.pyxom.output
     ----------------------
-    '''
+    ''')
     cProfile.run(create_test_run(ecoxipy_pyxom_output), sort='tottime')
 
-    print '''
+    print('''
     ecoxipy.dom_output
     ---------------------
-    '''
+    ''')
     cProfile.run(create_test_run(ecoxipy_dom_output), sort='tottime')
 
-    print '''
+    print('''
     ecoxipy.string_output
     ---------------------
-    '''
+    ''')
     cProfile.run(create_test_run(ecoxipy_string_output), sort='tottime')

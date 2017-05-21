@@ -116,7 +116,7 @@ class Comment(ContentNode):
         else:
             if indent:
                 indent_incr, indent_count = indent
-                content_handler.characters(u'\n')
+                content_handler.characters('\n')
                 for i in range(indent_count):
                         content_handler.characters(indent_incr)
             comment(encode(self.content))
@@ -211,11 +211,11 @@ class ProcessingInstruction(ContentNode):
     def _create_sax_events(self, content_handler, indent):
         if indent:
             indent_incr, indent_count = indent
-            content_handler.characters(u'\n')
+            content_handler.characters('\n')
             for i in range(indent_count):
                     content_handler.characters(indent_incr)
         content_handler.processingInstruction(self.target,
-            u'' if self.content is None else self.content)
+            '' if self.content is None else self.content)
 
     def __repr__(self):
         return 'ecoxipy.pyxom.ProcessingInstruction({}, {})'.format(

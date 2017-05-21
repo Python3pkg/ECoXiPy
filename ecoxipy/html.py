@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-u'''\
+'''\
 
 :mod:`ecoxipy.html5` - HTML5 Functionality
 ==========================================

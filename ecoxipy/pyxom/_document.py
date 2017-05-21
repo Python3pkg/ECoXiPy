@@ -182,7 +182,7 @@ class Document(ContainerNode):
             doctype_systemid, check_well_formedness)
         self._omit_xml_declaration = omit_xml_declaration
         if encoding is None:
-            encoding = u'UTF-8'
+            encoding = 'UTF-8'
         self._encoding = encoding
 
     @staticmethod
@@ -329,7 +329,7 @@ class Document(ContainerNode):
     @encoding.setter
     def encoding(self, value):
         if value is None:
-            value = u'UTF-8'
+            value = 'UTF-8'
         else:
             value = _unicode(value)
         self._encoding = value

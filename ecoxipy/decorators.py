@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-u'''\
+'''\
 
 :mod:`ecoxipy.decorators` - Decorators for Shorter XML-Creation Code
 ====================================================================

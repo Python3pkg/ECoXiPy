@@ -70,12 +70,12 @@ class NamespaceNameMixin(object):
                     if self.namespace_prefix is None:
                         namespace_source = None
                         namespace_uri = None
-                    elif self.namespace_prefix == u'xml':
+                    elif self.namespace_prefix == 'xml':
                         namespace_source = None
-                        namespace_uri = u'http://www.w3.org/XML/1998/namespace'
-                    elif self.namespace_prefix == u'xmlns':
+                        namespace_uri = 'http://www.w3.org/XML/1998/namespace'
+                    elif self.namespace_prefix == 'xmlns':
                         namespace_source = None
-                        namespace_uri = u'http://www.w3.org/2000/xmlns/'
+                        namespace_uri = 'http://www.w3.org/2000/xmlns/'
                     else:
                         namespace_source = self.parent.parent
                 else:
@@ -128,18 +128,18 @@ class Attribute(NamespaceNameMixin):
 
     def _update_namespace_prefix(self):
         name = self._name
-        if name == u'xmlns':
+        if name == 'xmlns':
             prefix = None
-        elif name.startswith(u'xmlns:') and len(name) > 6:
+        elif name.startswith('xmlns:') and len(name) > 6:
             prefix = name[6:]
             if self._check_well_formedness:
-                if prefix == u'xmlns':
+                if prefix == 'xmlns':
                     raise ecoxipy.XMLWellFormednessException(
-                        u'The namespace prefix "xmlns" must not be redefined.'
+                        'The namespace prefix "xmlns" must not be redefined.'
                     )
-                if prefix == u'xml':
+                if prefix == 'xml':
                     raise ecoxipy.XMLWellFormednessException(
-                        u'The namespace prefix "xml" must not be redefined.')
+                        'The namespace prefix "xml" must not be redefined.')
         else:
             prefix = False
         old_prefix = self._namespace_attribute_prefix
@@ -179,7 +179,7 @@ class Attribute(NamespaceNameMixin):
             _helpers.enforce_valid_xml_name(name)
         if name in self._parent._attributes:
             raise KeyError(
-                u'An attribute with name "{}" does already exist in the parent.'.format(
+                'An attribute with name "{}" does already exist in the parent.'.format(
                     name))
         del self._parent._attributes[self._name]
         self._parent._attributes[name] = self
@@ -274,7 +274,7 @@ class Attributes(collections.Mapping):
         name = _unicode(name)
         if name in self._attributes:
             raise KeyError(
-                u'An attribute with name "{}" already exists.'.format(name))
+                'An attribute with name "{}" already exists.'.format(name))
         value = _unicode(value)
         attribute = Attribute(self, name, value, self._check_well_formedness)
         self._attributes[name] = attribute
@@ -296,7 +296,7 @@ class Attributes(collections.Mapping):
                 'The parameter "attribute" must be an "ecoxipy.pyxom.Attribute" instance.')
         if attribute.name in self._attributes:
             raise KeyError(
-                u'An attribute with name "{}" already exists.'.format(name))
+                'An attribute with name "{}" already exists.'.format(name))
         parent = attribute.parent
         attribute._clear_namespace_uri()
         if parent is not None:
@@ -330,7 +330,7 @@ class Attributes(collections.Mapping):
 
     def __repr__(self):
         return 'ecoxipy.pyxom.Attributes{}'.format(
-            ', '.join([repr(attribute) for attribute in self.values()]))
+            ', '.join([repr(attribute) for attribute in list(self.values())]))
 
     def to_dict(self):
         '''\
@@ -340,7 +340,7 @@ class Attributes(collections.Mapping):
         '''
         return {
             attribute.name: attribute.value
-            for attribute in self.values()
+            for attribute in list(self.values())
         }
 
     def _attribute_value_mapping(self):

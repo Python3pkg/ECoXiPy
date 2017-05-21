@@ -10,7 +10,7 @@ from tests.performance import ecoxipy_string_output
 from tests.performance import ecoxipy_dom_output
 from tests.performance import ecoxipy_etree_output
 
-LOREM_IPSUM = u'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+LOREM_IPSUM = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
 
 if __name__ == '__main__':
     if len(sys.argv) not in (4, 5):
@@ -73,7 +73,7 @@ arguments: <string output> <repetitions> <data_count> [<file path>]
         max_time = max(sax_time, dom_time, element_out_time, string_out_time, dom_out_time)
         create_percent = lambda t: '| {: >6.3f} secs | {: >6.3f} secs ({: >6.2f} %) |'.format(
             t, t-min_time, (t-min_time)/(max_time-min_time)*100)
-        print('''\
+        print(('''\
 # ECoXiPy Performance Tests
 
 Python:                  Version {} on {}
@@ -110,7 +110,7 @@ Running Times:
             create_percent(string_out_time),
             create_percent(dom_out_time),
             create_percent(etree_out_time),
-        ))
+        )))
     else:
         path = sys.argv[4]
         import os.path

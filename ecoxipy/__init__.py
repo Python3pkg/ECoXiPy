@@ -174,11 +174,11 @@ from abc import ABCMeta, abstractmethod
 from tinkerpy import metaclass
 
 _python2 = sys.version_info[0] <= 2
-_unicode = unicode if _python2 else str
+_unicode = str if _python2 else str
 
 
 class MarkupBuilder(object):
-    u'''\
+    '''\
     A builder for creating XML in a pythonic way. All byte strings given are
     are decoded with the input encoding specified on instanciation.
 
@@ -246,7 +246,7 @@ class MarkupBuilder(object):
             handle_text(self._prepare_text(content), target_list)
             return
         try: # mappings define attributes
-            attr_names = content.keys()
+            attr_names = list(content.keys())
         except AttributeError:
             pass
         else:
@@ -342,7 +342,7 @@ class MarkupBuilder(object):
             for child in children:
                 self._preprocess(child, new_children, new_attributes,
                     self._append_text)
-            for attr_name, value in attributes.items():
+            for attr_name, value in list(attributes.items()):
                 new_attributes[_unicode(attr_name)] = self._prepare_text(value)
             return self._output.element(key, new_children, new_attributes)
         return build

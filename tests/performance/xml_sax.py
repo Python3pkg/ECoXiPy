@@ -1,7 +1,7 @@
-from __future__ import unicode_literals
+
 import sys
 if sys.version_info[0] > 2:
-    unicode = str
+    str = str
 
 from xml.dom import XHTML_NAMESPACE
 
@@ -35,9 +35,9 @@ def create_testdoc(_title, _content, _data_count, _data_text):
         text(_content)
         end_element('p')
         for i in range(_data_count):
-            start_element('div', attrs({'data-i': unicode(i)}))
+            start_element('div', attrs({'data-i': str(i)}))
             for j in range(_data_count):
-                start_element('p', attrs({'data-j': unicode(j)}))
+                start_element('p', attrs({'data-j': str(j)}))
                 text(_data_text)
                 end_element('p')
             end_element('div')

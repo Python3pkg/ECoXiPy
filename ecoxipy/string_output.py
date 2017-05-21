@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-u'''\
+'''\
 
 :mod:`ecoxipy.string_output` - Building XML Strings
 ===================================================
@@ -88,21 +88,21 @@ class StringOutput(Output):
             self._check_pi_content = nothing
             self._check_comment = nothing
         self._check_well_formedness = check_well_formedness
-        self._join = u''.join
-        self._format_element = u'<{0}{1}>{2}</{0}>'.format
-        self._format_element_empty = u'<{}{}/>'.format
-        self._format_attribute = u' {}={}'.format
-        self._format_pi = u'<?{}{}?>'.format
-        self._format_comment = u'<!--{}-->'.format
-        self._format_document = u'{}{}{}'.format
-        self._format_xml_declaration = u'<?xml version="1.0" encoding="{}"?>\n'.format
-        self._xml_declaration_no_encoding = u'<?xml version="1.0"?>\n'
-        self._format_doctype_empty = u'<!DOCTYPE {}>'.format
-        self._format_doctype_public = u'<!DOCTYPE {} PUBLIC "{}">'.format
-        self._format_doctype_system = u'<!DOCTYPE {} SYSTEM {}>'.format
-        self._format_doctype_public_system = u'<!DOCTYPE {} PUBLIC "{}" {}>'.format
-        self._format_doctype_systemid_quotes = u'"{}"'.format
-        self._format_doctype_systemid_apos = u"'{}'".format
+        self._join = ''.join
+        self._format_element = '<{0}{1}>{2}</{0}>'.format
+        self._format_element_empty = '<{}{}/>'.format
+        self._format_attribute = ' {}={}'.format
+        self._format_pi = '<?{}{}?>'.format
+        self._format_comment = '<!--{}-->'.format
+        self._format_document = '{}{}{}'.format
+        self._format_xml_declaration = '<?xml version="1.0" encoding="{}"?>\n'.format
+        self._xml_declaration_no_encoding = '<?xml version="1.0"?>\n'
+        self._format_doctype_empty = '<!DOCTYPE {}>'.format
+        self._format_doctype_public = '<!DOCTYPE {} PUBLIC "{}">'.format
+        self._format_doctype_system = '<!DOCTYPE {} SYSTEM {}>'.format
+        self._format_doctype_public_system = '<!DOCTYPE {} PUBLIC "{}" {}>'.format
+        self._format_doctype_systemid_quotes = '"{}"'.format
+        self._format_doctype_systemid_apos = "'{}'".format
 
     @property
     def check_well_formedness(self):
@@ -143,7 +143,7 @@ class StringOutput(Output):
         name = self._prepare_text(name)
         attributes = self._join([
             self._prepare_attribute(attr_name, attr_value)
-            for attr_name, attr_value in attributes.items()
+            for attr_name, attr_value in list(attributes.items())
         ])
         if len(children) == 0:
             return XMLFragment(self._format_element_empty(name, attributes))
@@ -188,7 +188,7 @@ class StringOutput(Output):
         if content is not None:
             self._check_pi_content(content)
         return XMLFragment(self._format_pi(target,
-            u'' if content is None or len(content) == 0 else u' ' + content
+            '' if content is None or len(content) == 0 else ' ' + content
         ))
 
     def document(self, doctype_name, doctype_publicid, doctype_systemid,
@@ -205,17 +205,17 @@ class StringOutput(Output):
             ``doctype_systemid`` is not a valid system ID.
         '''
         if omit_xml_declaration:
-            xml_declaration = u''
+            xml_declaration = ''
         else:
-            if encoding.upper() == u'UTF-8':
+            if encoding.upper() == 'UTF-8':
                 xml_declaration = self._xml_declaration_no_encoding
             else:
                 xml_declaration = self._format_xml_declaration(encoding)
         if doctype_name is None:
-            doctype = u''
+            doctype = ''
         else:
             if doctype_systemid is not None:
-                if u'"' in doctype_systemid:
+                if '"' in doctype_systemid:
                     systemid_creator = self._format_doctype_systemid_apos
                 else:
                     systemid_creator = self._format_doctype_systemid_quotes
@@ -263,7 +263,7 @@ class XMLFragment(_unicode):
     '''
 
     def __repr__(self):
-        return u'ecoxipy.string_output.XMLFragment({})'.format(
+        return 'ecoxipy.string_output.XMLFragment({})'.format(
             _unicode.__repr__(self))
 
 
@@ -275,7 +275,7 @@ class XMLDocument(XMLFragment):
     __slots__ = ('_encoding', '_v_encoded')
 
     def __repr__(self):
-        return u'ecoxipy.string_output.XMLDocument({}, {})'.format(
+        return 'ecoxipy.string_output.XMLDocument({}, {})'.format(
             _unicode.__repr__(self), repr(self._encoding))
 
     @classmethod

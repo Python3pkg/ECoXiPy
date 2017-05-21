@@ -165,7 +165,7 @@ class MarkupHandler(ContentHandler, DTDHandler, LexicalHandler):
         element = self._output.element(_unicode(name),
             self._current_children, {
             _unicode(attr_name): _unicode(attr_value)
-            for attr_name, attr_value in attrs.items()
+            for attr_name, attr_value in list(attrs.items())
         })
         self._leave_node(element)
 
@@ -249,7 +249,7 @@ class XMLFragmentParser(MarkupHandler):
         :raises: :class:`xml.sax.SAXException` if the XML is not well-formed.
         :returns: the created XML data of the output representation.
         '''
-        content_document = u'<ROOT>{}</ROOT>'.format(xml_fragment)
+        content_document = '<ROOT>{}</ROOT>'.format(xml_fragment)
         content_document = content_document.encode('UTF-8')
         byte_stream = BytesIO(content_document)
         try:
